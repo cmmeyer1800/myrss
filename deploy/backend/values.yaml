@@ -19,7 +19,7 @@ service:
   # This sets the service type more information can be found here: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types
   type: ClusterIP
   port: 80
-  targetPort: 8080
+  targetPort: 8000
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
@@ -37,11 +37,11 @@ resources: {}
 livenessProbe:
   httpGet:
     path: /
-    port: 8080
+    port: 8000
 readinessProbe:
   httpGet:
     path: /
-    port: 8080
+    port: 8000
 
 autoscaling:
   enabled: false
