@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: {{ include "backend.name" . }}-config
 data:
-  config.yaml: |
+  conf.yaml: |
     sources: # Example configuration
     - name: Wired
       url: https://www.wired.com/feed
