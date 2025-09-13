@@ -10,7 +10,7 @@ fi
 TAG=$1
 
 if [ -z "$2" ]; then
-    ARCH=$(uname -m)
+    ARCH="linux/amd64"
 else
     ARCH=$2
 fi
