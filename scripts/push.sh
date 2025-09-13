@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -ex
+
 if [ $# -eq 0 ]; then
     echo "Usage: $0 <tag> [arch]"
     exit 1

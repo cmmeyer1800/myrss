@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -e
+set -ex
 
 if [ $# -eq 0 ]; then
     echo "Usage: $0 <tag> [arch]"
@@ -17,7 +17,7 @@ fi
 
 echo "Building tag $TAG for $ARCH"
 
-docker buildx build --platform $ARCH -t cmmeyer1800/myrss-frontend:$TAG -f frontend/prod.Dockerfile frontend
-docker buildx build --platform $ARCH -t cmmeyer1800/myrss-backend:$TAG -f backend/Dockerfile backend
+docker buildx build --platform $ARCH -t cmmeyer1800/myrss-frontend:$TAG -f frontend/prod.Dockerfile frontend --load
+docker buildx build --platform $ARCH -t cmmeyer1800/myrss-backend:$TAG -f backend/Dockerfile backend --load
 
 echo "Build completed successfully!"
