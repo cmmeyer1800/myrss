@@ -1,0 +1,38 @@
+/* Sticky Sidebar Styles */
+.sticky-sidebar {
+  position: fixed;
+  top: 50%;
+  left: 20px;
+  transform: translateY(-50%);
+  width: 200px;
+  max-height: 80vh;
+  overflow-y: auto;
+  z-index: 1000;
+  /* border-radius: 8px; */
+  /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
+  /* padding: 1rem; */
+}
+
+/* Adjust main content to account for sidebar */
+.main-content {
+  margin-left: 240px; /* sidebar width + margin */
+  padding: 0 20px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .sticky-sidebar {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    width: 100%;
+    max-height: none;
+    margin-bottom: 1rem;
+  }
+  
+  .main-content {
+    margin-left: 0;
+    padding: 0;
+  }
+}

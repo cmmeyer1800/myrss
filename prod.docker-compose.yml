@@ -1,0 +1,16 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    image: cmmeyer1800/myrss-backend
+    volumes:
+      - ./conf.yaml:/conf.yaml
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: prod.Dockerfile
+    image: cmmeyer1800/myrss-frontend
+    ports:
+      - "80:80"
