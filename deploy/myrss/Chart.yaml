@@ -1,0 +1,14 @@
+apiVersion: v2
+name: myrss
+version: 0.1.0
+description: A Helm umbrella chart for the myrss self hosted RSS viewer
+
+type: application
+
+dependencies:
+  - name: backend
+    version: 0.1.0
+    repository: "file://../backend"
+  - name: frontend
+    version: 0.1.0
+    repository: "file://../frontend"
