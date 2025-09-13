@@ -31,13 +31,13 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Make scripts executable
-        run: chmod +x ./build.sh ./push.sh
+        run: chmod +x ./scripts/build.sh ./scripts/push.sh
 
       - name: Run build script with tag
-        run: ./build.sh "${GITHUB_REF_NAME}"
+        run: ./scripts/build.sh "${GITHUB_REF_NAME}"
 
       - name: Run push script with tag
-        run: ./push.sh "${GITHUB_REF_NAME}"
+        run: ./scripts/push.sh "${GITHUB_REF_NAME}"
 
   # Manual job for building from branches (no push)
   branch-build:
@@ -51,7 +51,7 @@ jobs:
           ref: ${{ github.event.inputs.build_branch }}
 
       - name: Make scripts executable
-        run: chmod +x ./build.sh
+        run: chmod +x ./scripts/build.sh
 
       - name: Run build script (manual branch build)
-        run: ./build.sh "dev-${{ github.event.inputs.build_branch }}"
+        run: ./scripts/build.sh "dev-${{ github.event.inputs.build_branch }}"

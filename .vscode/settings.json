@@ -1,0 +1,3 @@
+{
+    "python.defaultInterpreterPath": "${workspaceRoot}/backend/.venv/bin/activate"
+}
