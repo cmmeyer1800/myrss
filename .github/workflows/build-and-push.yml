@@ -2,12 +2,19 @@ name: Docker Build and Push
 
 on:
   push:
-    branches:
-      - main
+    tags:
+      - '*'   # trigger on any tag
   workflow_dispatch:
+    inputs:
+      build_branch:
+        description: "Branch to build from"
+        required: true
+        default: "main"
 
 jobs:
-  build-and-push:
+  # Automatic job when a tag is pushed
+  tag-build-and-push:
+    if: startsWith(github.ref, 'refs/tags/')
     runs-on: ubuntu-latest
 
     steps:
@@ -24,12 +31,27 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Make scripts executable
-        run: |
-          chmod +x ./scripts/build.sh
-          chmod +x ./scripts/push.sh
+        run: chmod +x ./build.sh ./push.sh
 
-      - name: Run build script
-        run: ./scripts/build.sh
+      - name: Run build script with tag
+        run: ./build.sh "${GITHUB_REF_NAME}"
 
-      - name: Run push script
-        run: ./scripts/push.sh
+      - name: Run push script with tag
+        run: ./push.sh "${GITHUB_REF_NAME}"
+
+  # Manual job for building from branches (no push)
+  branch-build:
+    if: startsWith(github.ref, 'refs/heads/')
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.inputs.build_branch }}
+
+      - name: Make scripts executable
+        run: chmod +x ./build.sh
+
+      - name: Run build script (manual branch build)
+        run: ./build.sh "dev-${{ github.event.inputs.build_branch }}"
