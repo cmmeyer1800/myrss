@@ -42,13 +42,9 @@ app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- end }}
 
-{{/*
-Selector labels
-*/}}
 {{- define "backend.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "backend.name" . }}
-app.kubernetes.io/instance: {{ .Release.Name }}
-{{- end }}
+app: {{ include "backend.name" . }}
+{{- end -}}
 
 {{/*
 Create the name of the service account to use
