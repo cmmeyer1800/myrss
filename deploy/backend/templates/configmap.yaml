@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "backend.name" . }}-config
+data:
+  config.yaml: |
+    sources: # Example configuration
+    - name: Wired
+      url: https://www.wired.com/feed
+      tags:
+        - News
+        - Technology
+        - Science

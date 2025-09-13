@@ -35,3 +35,11 @@ spec:
           readinessProbe:
             {{- toYaml . | nindent 12 }}
           {{- end }}
+          volumeMounts:
+            - name: config-volume
+              mountPath: /conf.yaml
+              subPath: conf.yaml
+      volumes:
+        - name: config-volume
+          configMap:
+            name: {{ include "backend.name" . }}-config

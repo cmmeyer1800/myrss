@@ -6,7 +6,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: myrss.homelab.local      # You can use /etc/hosts to route this
+    - host: {{ .Values.ingress.host }}      # You can use /etc/hosts to route this
       http:
         paths:
           - path: /api
